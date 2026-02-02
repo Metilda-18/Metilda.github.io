@@ -67,7 +67,7 @@ body {
 
 .hero-para {
     width: calc(100% - 450px); /* leaves space for bakery image */
-    margin-left: 170px;        /* aligns under heading */
+    margin-left: 130px;        /* aligns under heading */
 }
 
 .hero-para p {
