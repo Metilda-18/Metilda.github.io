@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bakery Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: #fff3e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* CHAT CONTAINER */
+.chat-box {
+    width: 320px;
+    background: #efeae2;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* HEADER */
+.chat-header {
+    background: #16a34a;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.chat-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chat-header span {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* CHAT BODY */
+.chat-body {
+    padding: 15px;
+    height: 260px;
+    overflow-y: auto;
+}
+
+.msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.received {
+    background: white;
+}
+
+.sent {
+    background: #dcf8c6;
+    margin-left: auto;
+}
+
+/* FOOTER */
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    background: #f0f0f0;
+}
+
+.chat-footer input {
+    flex: 1;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 14px;
+    outline: none;
+}
+
+.chat-footer button {
+    background: #16a34a;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.back-btn {
+    display: inline-block;
+    margin: 10px;
+    background: #16a34a;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat-box">
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <img src="WA.jpg" alt="WhatsApp">
+        <div>
+            <h4>Bakery Support</h4>
+            <span>Online</span>
+        </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="chat-body" id="chatBody">
+        <div class="msg received">Hi 👋 How can we help you?</div>
+        <div class="msg sent">I want to place an order 🍰</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="chat-footer">
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const chatBody = document.getElementById("chatBody");
+
+    if (input.value.trim() !== "") {
+
+        // User message
+        const msg = document.createElement("div");
+        msg.className = "msg sent";
+        msg.textContent = input.value;
+        chatBody.appendChild(msg);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Auto reply
+        setTimeout(() => {
+            const reply = document.createElement("div");
+            reply.className = "msg received";
+            reply.innerHTML = `
+                🍰 Our Menu:<br>
+                Chocolate Cake (1/2Kg) – ₹500<br>
+                Brownies – ₹150<br>
+                Cupcakes – ₹200<br>
+                Muffins – ₹180<br>
+                Cookies – ₹120 <br><br>
+                
+                 😊 Thanks! We’ll contact you shortly.
+            `;
+                         chatBody.appendChild(reply);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+    }
+}
+</script>
+
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+</body>
+</html>
